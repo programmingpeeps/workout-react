@@ -12,7 +12,7 @@ const Workout = (workout) => {
 }
 
 Workout.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   exercises: PropTypes.array.isRequired
 }

@@ -1,18 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Exercise from './Exercise'
+import { connect } from 'react-redux'
 
 const ExerciseList = ({ exercises }) => {
+  let exercisesYall = [];
+  for (let exerciseId in exercises.byId) {
+    exercisesYall.push(
+      {
+        id: exerciseId,
+        ...exercises.byId[exerciseId]
+      }
+    );
+  }
   return (
-      exercises.map(e => {
-          return <Exercise key={e.id} {...e} />
-      })
+    exercisesYall.map(e => {
+      return <Exercise key={e.id} {...e} />
+    })
   )
 }
 
 ExerciseList.propTypes = {
-  exercises: PropTypes.array.isRequired
+  exercises: PropTypes.object.isRequired
   //onClick: PropTypes.func.isRequired
 }
 
-export default ExerciseList
+
+const mapStateToProps = state => {
+  return {
+    exercises: state.exercises
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(ExerciseList);

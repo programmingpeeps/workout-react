@@ -1,18 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Set from './Set'
+import { connect } from 'react-redux'
 
-const SetList = ({ sets }) => {
+const SetList = ({setIds, sets}) => {
+  let setsYall = setIds.map((setId) => sets.byId[setId]);
+
   return (
-      sets.map(s => {
-          return <Set key={s.id} {...s} />
-      })
+    setsYall.map(s => {
+      return <Set key={s.id} {...s} />
+    })
   )
 }
 
 SetList.propTypes = {
-  sets: PropTypes.array.isRequired
+  sets: PropTypes.object.isRequired
   //onClick: PropTypes.func.isRequired
 }
 
-export default SetList
+const mapStateToProps = state => {
+  return {
+    sets: state.sets
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(SetList);
