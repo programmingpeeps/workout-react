@@ -6,15 +6,18 @@ const Workout = (workout) => {
   return (
     <div className="workout">
         <p className="workout-name">{ workout.name }</p>
-        <ExerciseList exercises={workout.exercises} />
+        <p className="workout-weight">{ workout.weight }</p>
+        <p className="workout-reps">{ workout.reps }</p>
     </div>
   )
 }
 
 Workout.propTypes = {
   id: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  exercises: PropTypes.array.isRequired
+  weight: PropTypes.number.isRequired,
+  reps: PropTypes.number.isRequired
 }
 
 export default Workout

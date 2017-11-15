@@ -1,6 +1,6 @@
-export const saveSet = set => {
+export const saveWorkout = workout => {
   return {
-    type: 'ADD_SET',
-    payload: set
+    type: 'ADD_WORKOUT',
+    payload: workout
   }
 }
