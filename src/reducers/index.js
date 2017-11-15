@@ -4,9 +4,7 @@ import exercises from './exercises'
 import sets from './sets'
 
 const workoutApp = combineReducers({
-  workouts,
-  exercises,
-  sets
+  workouts
 })
 
 //    Mon 10/9  [workout]
