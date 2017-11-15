@@ -1,18 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Workout from './Workout'
+import React from "react";
+import PropTypes from "prop-types";
+import Exercise from "./Exercise";
+import _ from "lodash";
 
 const WorkoutList = ({ workouts }) => {
-  return (
-    workouts.map(w => {
-      return <Workout key={w.id} {...w} />
-    })
-  )
-}
+  const groupEmUp = _.groupBy(workouts, "name");
+  return Object.entries(groupEmUp).map(([key, value]) => (
+    <Exercise key={key} name={key} sets={value} />
+  ));
+};
 
 WorkoutList.propTypes = {
-  workouts: PropTypes.object.isRequired
-  //onClick: PropTypes.func.isRequired
-}
+  workouts: PropTypes.array.isRequired
+};
 
-export default WorkoutList
+export default WorkoutList;

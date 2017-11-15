@@ -16,7 +16,7 @@ const initState = [
   {
     id: 3,
     date: "2017-11-14",
-    name: "kensodev PS Quadruples",
+    name: "kensodev PS Quads",
     weight: 200,
     reps: 4
   }

@@ -1,12 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SetList from './SetList'
 
-const Exercise = (exercise) => {
+const Exercise = (props) => {
+  const { name, sets } = props;
+  const something = sets.map((val) => (
+    <li className="set">
+      <p>{ val.weight }</p>
+      <p>{ val.reps }</p>
+    </li>
+  ))
   return (
     <div className="exercise">
-      <p className="exercise-name">{ exercise.name }</p>
-      <SetList setIds={ exercise.sets } />
+      <p className="exercise-name">{ name }</p>
+      <ul className="sets">
+        { something }
+      </ul>
     </div>
   )
 }
