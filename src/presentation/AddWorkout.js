@@ -12,19 +12,16 @@ class AddWorkoutComponent extends React.Component {
       reps: 0,
       weight: 0.0
     };
-
-    this.handleKraken = this.handleKraken.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleKraken(event) {
+  handleKraken = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     this.props.saveWorkout(this.state);
     event.preventDefault();
   }
