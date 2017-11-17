@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { saveWorkout } from "../actions";
+import moment from 'moment';
 
 class AddWorkoutComponent extends React.Component {
   constructor(props) {
@@ -9,8 +10,8 @@ class AddWorkoutComponent extends React.Component {
     this.state = {
       name: "tape_speed's debugger curls",
       date: "2017-11-14",
-      reps: 0,
-      weight: 0.0
+//      reps: 0,
+//      weight: 0.0
     };
   }
 
@@ -22,7 +23,8 @@ class AddWorkoutComponent extends React.Component {
   }
 
   handleSubmit = (event) => {
-    this.props.saveWorkout(this.state);
+    this.props.saveWorkout({...this.state,
+      date: moment().format("YYYY-MM-DD")});
     event.preventDefault();
   }
 
@@ -40,32 +42,34 @@ class AddWorkoutComponent extends React.Component {
       );
     });
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Exercise:
-          <select name="name" onChange={this.handleKraken}>
+      <form onSubmit={this.handleSubmit} className="form-inline">
+        <div className="form-group">
+          <select name="name" onChange={this.handleKraken}
+            className="form-control">
             {exercisesOptions}
           </select>
-        </label>
-        <label>
-          Reps:
+        </div>
+        <div className="form-group">
           <input
+            placeholder="reps"
+            className="form-control"
             type="text"
             name="reps"
             value={this.state.reps}
             onChange={this.handleKraken}
           />
-        </label>
-        <label>
-          Weight:
+        </div>
+        <div className="form-group">
           <input
+            placeholder="weight"
+            className="form-control"
             type="text"
             name="weight"
             value={this.state.weight}
             onChange={this.handleKraken}
           />
-        </label>
-        <input type="submit" value="Submit" />
+        </div>
+        <input type="submit" value="Submit" className="btn btn-primary" />
       </form>
     );
   }
